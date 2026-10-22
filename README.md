@@ -26,6 +26,16 @@ Static site served by GitHub Pages from the `main` branch root. No build step.
 - `presskit/hope-survival-screenshots.zip`, `presskit/hope-survival-logo.png` — press downloads.
 - `.nojekyll` — tells Pages to serve files as-is.
 
+## Cache busting
+
+Pages and its CDN cache files for ~10 minutes, so a deploy can serve new HTML with an old
+stylesheet. Every page links `style.css?v=…` and `site.js?v=…`; after changing either file, bump
+the version in all four pages:
+
+```
+V=$(date +%Y%m%d%H%M); sed -i -E "s#(style\.css|site\.js)\?v=[0-9]+#\1?v=$V#" index.html ru/index.html presskit/index.html ru/presskit/index.html
+```
+
 ## Placeholder content
 
 Screenshots, the logo and all video loops are cut from the official trailer
