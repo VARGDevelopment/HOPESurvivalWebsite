@@ -3,43 +3,170 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>HOPE: Survival</title>
-  <meta name="description" content="HOPE: Survival — a co-op survival game. Coming soon.">
-  <style>
-    :root {
-      --bg: #0e0f0d;
-      --fg: #e8e6df;
-      --muted: #8f8c82;
-    }
-    * { box-sizing: border-box; margin: 0; }
-    body {
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 16px;
-      background: var(--bg);
-      color: var(--fg);
-      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-      text-align: center;
-    }
-    h1 {
-      font-size: clamp(2.5rem, 9vw, 6rem);
-      letter-spacing: 0.08em;
-      font-weight: 800;
-    }
-    p {
-      margin-top: 1rem;
-      color: var(--muted);
-      font-size: 1.1rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-    }
-  </style>
+  <title>HOPE: Survival — Co-op Zombie Survival for 1–8 Players</title>
+  <meta name="description" content="HOPE: Survival is a top-down co-op survival game for 1–8 players. Scavenge a quarantined island, build your base and hold the line against night hordes. Wishlist on Steam.">
+  <meta name="theme-color" content="#0d0e0c">
+
+  <!-- Social cards need absolute URLs: prefix these with the site domain once it is attached. -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="HOPE: Survival">
+  <meta property="og:description" content="Top-down co-op zombie survival for 1–8 players. The infected follow the noise you make — and every night they come for your base.">
+  <meta property="og:image" content="assets/img/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/png" href="assets/img/icon.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Oswald:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="studio" href="./">Thirst Games Studio</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="#trailer">Trailer</a>
+        <a href="#features">Features</a>
+        <a href="#screenshots">Screenshots</a>
+        <a class="nav-keep" href="presskit/">Press kit</a>
+      </nav>
+    </div>
+  </header>
+
   <main>
-    <h1>HOPE: SURVIVAL</h1>
-    <p>Coming soon</p>
+    <section class="hero">
+      <video autoplay muted loop playsinline preload="auto" poster="assets/img/hero-poster.jpg" aria-hidden="true">
+        <source src="assets/video/hero.mp4" type="video/mp4">
+      </video>
+      <div class="hero-shade"></div>
+      <div class="wrap">
+        <h1><img class="hero-logo" src="assets/img/logo.png" width="900" height="561" alt="HOPE: Survival"></h1>
+        <p class="hero-tagline">The world is broken. Humanity is fading. But hope still remains.</p>
+        <p class="hero-facts">Co-op survival · 1–8 players · PC</p>
+        <div class="actions">
+          <a class="btn btn-primary" data-link="steam" data-pending="Steam page coming soon" href="#" target="_blank" rel="noopener">Wishlist on Steam</a>
+          <a class="btn btn-ghost" href="#trailer">Watch the trailer</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="trailer">
+      <div class="wrap">
+        <p class="eyebrow">Official trailer</p>
+        <h2>Hold the line until sunrise</h2>
+        <p class="lead">HOPE: Survival is a top-down co-op survival game for 1–8 players — or play solo. Scavenge a quarantined island, craft what you need, and turn your base into the last warm light in a dying world.</p>
+        <div class="trailer" data-trailer>
+          <img src="assets/img/screens/07-parking-lot.jpg" alt="" loading="lazy">
+          <button class="play" type="button" aria-label="Play the trailer">
+            <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l15 8-15 8z"/></svg></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="wrap">
+        <p class="eyebrow">The game</p>
+        <h2>Every morning is a small victory</h2>
+
+        <div class="features">
+          <article class="feature">
+            <div class="feature-media"><img src="assets/img/screens/06-horde-thumb.jpg" width="800" height="450" alt="A horde of infected crossing a warehouse yard" loading="lazy"></div>
+            <div>
+              <h3>Noise is bait</h3>
+              <p>Gunshots, explosions and the machines you run draw the infected in. Every shot is a decision — and a well-thrown stone can lure them away from where you need to be.</p>
+            </div>
+          </article>
+
+          <article class="feature">
+            <div class="feature-media"><img src="assets/img/screens/03-night-fires-thumb.jpg" width="800" height="450" alt="Survivors holding their base at night among burning fires" loading="lazy"></div>
+            <div>
+              <h3>Every night they come</h3>
+              <p>When the sun goes down, the hordes march on your base. They grow stronger every night and scale with the size of your squad. Hold the line until morning.</p>
+            </div>
+          </article>
+
+          <article class="feature">
+            <div class="feature-media"><img src="assets/img/screens/02-base-thumb.jpg" width="800" height="450" alt="A fortified survivor camp with floodlights and quarantine banners" loading="lazy"></div>
+            <div>
+              <h3>Build the last warm light</h3>
+              <p>Turn a patch of ruins into a home: crafting stations, a furnace, extractors, garden beds, gates and traps. Upgrade it night after night — it is the only safe place you have.</p>
+            </div>
+          </article>
+
+          <article class="feature">
+            <div class="feature-media"><img src="assets/img/screens/07-parking-lot-thumb.jpg" width="800" height="450" alt="Survivors fighting their way across an overgrown parking lot" loading="lazy"></div>
+            <div>
+              <h3>Survive together</h3>
+              <p>Go it alone or bring up to seven friends. Split up to scavenge, regroup to defend — and when someone falls in the field, they rise again as one of them, carrying everything they had.</p>
+            </div>
+          </article>
+        </div>
+
+        <ul class="more-features">
+          <li><strong>Real survival</strong><span>Hunger, thirst, fatigue, temperature, bleeding, broken bones — and food that spoils.</span></li>
+          <li><strong>Close or ranged</strong><span>Melee combos, firearms, a bow, grenades and molotovs.</span></li>
+          <li><strong>An island with a story</strong><span>Piece together what happened here through notes scattered across the world.</span></li>
+          <li><strong>Living weather</strong><span>Snow, fog, rain and storms change how the island plays.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="screenshots">
+      <div class="wrap">
+        <p class="eyebrow">Screenshots</p>
+        <h2>The quarantined island</h2>
+        <div class="gallery">
+          <a href="assets/img/screens/01-compound.jpg" data-shot><img src="assets/img/screens/01-compound-thumb.jpg" width="800" height="450" alt="Infected swarming a barricaded compound" loading="lazy"></a>
+          <a href="assets/img/screens/02-base.jpg" data-shot><img src="assets/img/screens/02-base-thumb.jpg" width="800" height="450" alt="A fortified survivor camp" loading="lazy"></a>
+          <a href="assets/img/screens/06-horde.jpg" data-shot><img src="assets/img/screens/06-horde-thumb.jpg" width="800" height="450" alt="A horde in a warehouse yard" loading="lazy"></a>
+          <a href="assets/img/screens/04-street.jpg" data-shot><img src="assets/img/screens/04-street-thumb.jpg" width="800" height="450" alt="An abandoned street with an ambulance" loading="lazy"></a>
+          <a href="assets/img/screens/03-night-fires.jpg" data-shot><img src="assets/img/screens/03-night-fires-thumb.jpg" width="800" height="450" alt="Night defense among fires" loading="lazy"></a>
+          <a href="assets/img/screens/08-snow.jpg" data-shot><img src="assets/img/screens/08-snow-thumb.jpg" width="800" height="450" alt="A fight in the snow" loading="lazy"></a>
+          <a href="assets/img/screens/07-parking-lot.jpg" data-shot><img src="assets/img/screens/07-parking-lot-thumb.jpg" width="800" height="450" alt="An overgrown parking lot full of infected" loading="lazy"></a>
+          <a href="assets/img/screens/09-forest.jpg" data-shot><img src="assets/img/screens/09-forest-thumb.jpg" width="800" height="450" alt="Scavenging at the edge of the forest" loading="lazy"></a>
+          <a href="assets/img/screens/05-toxic-cloud.jpg" data-shot><img src="assets/img/screens/05-toxic-cloud-thumb.jpg" width="800" height="450" alt="A toxic cloud bursting in a crowd of infected" loading="lazy"></a>
+          <a href="assets/img/screens/10-gun-vault.jpg" data-shot><img src="assets/img/screens/10-gun-vault-thumb.jpg" width="800" height="450" alt="A workshop with weapons on the benches" loading="lazy"></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta">
+      <img class="cta-bg" src="assets/img/screens/09-forest-thumb.jpg" alt="" loading="lazy">
+      <div class="wrap">
+        <p class="eyebrow">Join the survivors</p>
+        <h2>Wishlist now. Survive together.</h2>
+        <p class="lead">Wishlisting tells Steam the game matters and gets you notified on launch. Join the Discord to follow development, share clips and find a squad.</p>
+        <div class="actions">
+          <a class="btn btn-primary" data-link="steam" data-pending="Steam page coming soon" href="#" target="_blank" rel="noopener">Wishlist on Steam</a>
+          <a class="btn btn-ghost" data-link="discord" data-pending="Discord coming soon" href="#" target="_blank" rel="noopener">Join the Discord</a>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© <span data-year>2026</span> Thirst Games Studio</span>
+      <nav aria-label="Footer">
+        <a data-link="steam" href="#" target="_blank" rel="noopener">Steam</a>
+        <a data-link="discord" href="#" target="_blank" rel="noopener">Discord</a>
+        <a data-link="trailer" href="#" target="_blank" rel="noopener">YouTube</a>
+        <a href="presskit/">Press kit</a>
+      </nav>
+      <p class="legal">Steam and the Steam logo are trademarks and/or registered trademarks of Valve Corporation in the U.S. and/or other countries.</p>
+    </div>
+  </footer>
+
+  <dialog class="lightbox" id="lightbox" aria-label="Screenshot viewer">
+    <img src="" alt="">
+    <button type="button" data-close aria-label="Close">✕</button>
+    <button type="button" data-prev aria-label="Previous screenshot">‹</button>
+    <button type="button" data-next aria-label="Next screenshot">›</button>
+  </dialog>
+
+  <script src="assets/js/site.js"></script>
 </body>
 </html>
