@@ -8,8 +8,12 @@ Static site served by GitHub Pages from the `main` branch root. No build step.
 - `assets/js/site.js` — **all outbound links** (`LINKS`: Steam, Discord, trailer, press email).
   An empty value renders the button as "coming soon" (and hides it in the sticky header);
   fill it in and the button goes live everywhere.
-- `assets/video/` — `hero.mp4` (1600×900) and `hero-mobile.mp4` (960×540) background loop,
-  `feature-*.mp4` loops for the feature blocks; each has a `.webp` poster (its first frame).
+- `assets/video/` — background loop in four variants, picked by the browser in this order:
+  `hero-mobile-av1.mp4` / `hero-mobile.mp4` (1280×720, phones) and `hero-av1.mp4` / `hero.mp4`
+  (1920×1080); AV1 first, H.264 as the fallback. `feature-*.mp4` are the feature-block loops.
+  Each loop has a `.webp` poster (its first frame).
+  The hero is the trailer at exactly half speed (60 fps source → 30 fps, every frame kept): a
+  non-integer slow-down drops frames unevenly and the loop judders.
 - `assets/img/screens/` — screenshots: `NN-name.jpg` (1920×1080, press downloads),
   `NN-name.webp` (same size, lightbox) and `NN-name-thumb.webp` (800×450).
 - `assets/fonts/` — Oswald and Inter, latin subset, self-hosted (SIL Open Font License).
