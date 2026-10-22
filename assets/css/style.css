@@ -187,11 +187,14 @@ h3 { font-size: 1.25rem; }
   height: 72px;
 }
 
-.header-cta { display: none; gap: 8px; }
-.site-header.is-stuck .header-cta { display: flex; }
+/* On wide screens the Steam/Discord buttons stay in the header at all times, so the nav never jumps
+   when the header sticks. On phones there is no room: they replace the nav once the header sticks. */
+.header-cta { display: flex; gap: 8px; }
 .header-cta .is-pending { display: none; }
 
 @media (max-width: 640px) {
+  .header-cta { display: none; }
+  .site-header.is-stuck .header-cta { display: flex; }
   .site-header.is-stuck .site-nav { display: none; }
 }
 
@@ -211,7 +214,7 @@ h3 { font-size: 1.25rem; }
 .site-header .studio,
 .site-nav a { text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8); }
 
-.site-nav { display: flex; gap: 24px; }
+.site-nav { display: flex; gap: 24px; margin-left: auto; }
 .site-nav a {
   color: var(--fg);
   font: 500 0.85rem/1 var(--font-head);
@@ -222,9 +225,12 @@ h3 { font-size: 1.25rem; }
 }
 .site-nav a:hover { opacity: 1; color: var(--gold-bright); }
 
-@media (max-width: 640px) {
+@media (max-width: 960px) {
   .site-nav a:not(.nav-keep) { display: none; }
 }
+
+/* Anchored sections land below the fixed header instead of under it. */
+section[id] { scroll-margin-top: 72px; }
 
 /* Hero */
 
