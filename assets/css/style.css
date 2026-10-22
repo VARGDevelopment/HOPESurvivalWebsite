@@ -355,30 +355,75 @@ h3 { font-size: 1.25rem; }
   margin-top: 56px;
 }
 
+/* Media always takes the wide column; even rows mirror the columns so the video keeps its size. */
 .feature {
   display: grid;
-  grid-template-columns: 1.25fr 1fr;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
   align-items: center;
-  gap: clamp(24px, 5vw, 56px);
+  gap: clamp(28px, 5vw, 64px);
 }
 
+.feature:nth-child(even) { grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); }
 .feature:nth-child(even) .feature-media { order: 2; }
 
 .feature-media {
+  position: relative;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+}
+
+.feature-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(201, 164, 106, 0.12);
+  pointer-events: none;
 }
 
 .feature-media img,
 .feature-media video { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: var(--bg-raised); }
 
-.feature h3 { font-size: clamp(1.4rem, 3vw, 1.9rem); }
-.feature p { margin: 14px 0 0; color: var(--muted); }
+.feature-body { position: relative; padding-left: 24px; border-left: 2px solid var(--gold); }
+
+.feature-num {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--gold);
+  font: 500 0.85rem/1 var(--font-head);
+  letter-spacing: 0.3em;
+}
+
+.feature h3 { font-size: clamp(1.8rem, 3.6vw, 2.6rem); }
+.feature p { margin: 16px 0 0; color: var(--fg); font-size: 1.1rem; line-height: 1.6; }
+
+.feature-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.feature-tags li {
+  padding: 7px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg-raised);
+  color: var(--muted);
+  font: 500 0.78rem/1 var(--font-head);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
 
 @media (max-width: 760px) {
-  .feature { grid-template-columns: 1fr; }
+  .feature,
+  .feature:nth-child(even) { grid-template-columns: minmax(0, 1fr); }
   .feature:nth-child(even) .feature-media { order: 0; }
+  .feature-body { padding-left: 18px; }
 }
 
 .more-features {
