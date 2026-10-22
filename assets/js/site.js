@@ -64,11 +64,34 @@ if (lightbox) {
   });
 }
 
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 // Respect reduced motion: keep the hero on its poster frame.
 const heroVideo = document.querySelector(".hero video");
-if (heroVideo && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+if (heroVideo && reducedMotion) {
   heroVideo.removeAttribute("autoplay");
   heroVideo.pause();
+}
+
+// Header gets a background and the Steam/Discord buttons once the hero scrolls away.
+const header = document.querySelector(".site-header.is-sticky");
+const hero = document.querySelector(".hero");
+if (header && hero) {
+  new IntersectionObserver(([entry]) => {
+    header.classList.toggle("is-stuck", !entry.isIntersecting);
+  }, { rootMargin: "-72px 0px 0px 0px" }).observe(hero);
+}
+
+// Feature loops play only while on screen, and never with reduced motion.
+const loops = document.querySelectorAll("video[data-loop]");
+if (!reducedMotion) {
+  const loopObserver = new IntersectionObserver((entries) => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (isIntersecting) target.play().catch(() => {});
+      else target.pause();
+    });
+  }, { threshold: 0.25 });
+  loops.forEach((v) => loopObserver.observe(v));
 }
 
 document.querySelectorAll("[data-year]").forEach((el) => { el.textContent = new Date().getFullYear(); });

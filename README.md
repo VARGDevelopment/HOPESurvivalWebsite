@@ -2,19 +2,28 @@
 
 Static site served by GitHub Pages from the `main` branch root. No build step.
 
-- `index.html` — landing: hero, trailer, features, screenshots, community.
+- `index.html` — landing: hero loop, trailer, features with video loops, screenshots, FAQ, community.
 - `presskit/index.html` — press kit: fact sheet, descriptions, features, downloads.
+- `404.html` — self-contained "not found" page (no relative assets on purpose).
 - `assets/js/site.js` — **all outbound links** (`LINKS`: Steam, Discord, trailer, press email).
-  An empty value renders the button as "coming soon"; fill it in and the button goes live everywhere.
-- `assets/img/screens/` — screenshots, `NN-name.jpg` (1920×1080) + `NN-name-thumb.jpg` (800×450).
+  An empty value renders the button as "coming soon" (and hides it in the sticky header);
+  fill it in and the button goes live everywhere.
+- `assets/video/` — `hero.mp4` (1600×900) and `hero-mobile.mp4` (960×540) background loop,
+  `feature-*.mp4` loops for the feature blocks; each has a `.webp` poster (its first frame).
+- `assets/img/screens/` — screenshots: `NN-name.jpg` (1920×1080, press downloads),
+  `NN-name.webp` (same size, lightbox) and `NN-name-thumb.webp` (800×450).
+- `assets/fonts/` — Oswald and Inter, latin subset, self-hosted (SIL Open Font License).
 - `presskit/hope-survival-screenshots.zip`, `presskit/hope-survival-logo.png` — press downloads.
 - `.nojekyll` — tells Pages to serve files as-is.
 
 ## Placeholder content
 
-Screenshots, the logo and the hero loop (`assets/video/hero.mp4`) are cut from the official trailer
-(`HopeSurvivalTrailer.mp4`). Replace them with real screenshots from the shot list when they exist;
-rebuild the zip with the same names.
+Screenshots, the logo and all video loops are cut from the official trailer
+(`HopeSurvivalTrailer.mp4`). Replace them with real captures when they exist; keep the names and
+rebuild the zip.
+
+The loops are seamless: each one ends by cross-fading into its own first frame. With ffmpeg, for a
+clip of length `L` and fade `F`: `xfade` the clip with itself at `offset=L-F`, then `trim=start=F:end=L`.
 
 ## Local preview
 
@@ -30,6 +39,9 @@ Set in **Settings → Pages → Custom domain**; GitHub then commits a `CNAME` f
 DNS at the registrar:
 
 - apex: `A` records `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-- `www`: `CNAME` → `<owner>.github.io`
+- `www`: `CNAME` → `vargdevelopment.github.io`
 
-After DNS resolves, enable **Enforce HTTPS**, and make the `og:image` URL in `index.html` absolute.
+After DNS resolves, enable **Enforce HTTPS**, then replace
+`https://vargdevelopment.github.io/HOPESurvivalWebsite/` with the domain in: `index.html`
+(canonical, og/twitter tags, JSON-LD), `presskit/index.html` (canonical, og tags), `sitemap.xml`,
+`robots.txt`. `robots.txt` only takes effect at a domain root, i.e. after the domain is attached.
