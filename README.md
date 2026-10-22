@@ -4,6 +4,9 @@ Static site served by GitHub Pages from the `main` branch root. No build step.
 
 - `index.html` — landing: hero loop, trailer, features with video loops, screenshots, FAQ, community.
 - `presskit/index.html` — press kit: fact sheet, descriptions, features, downloads.
+- `ru/index.html`, `ru/presskit/index.html` — Russian versions; they share `assets/` and the press
+  downloads with the English pages. A text change goes into both languages.
+- `presskit/gifs/` — seamless 640×360 GIFs for social posts (each under 10 MB) with `-thumb.webp` previews.
 - `404.html` — self-contained "not found" page (no relative assets on purpose).
 - `assets/js/site.js` — **all outbound links** (`LINKS`: Steam, Discord, trailer, press email).
   An empty value renders the button as "coming soon" (and hides it in the sticky header);
@@ -16,7 +19,10 @@ Static site served by GitHub Pages from the `main` branch root. No build step.
   non-integer slow-down drops frames unevenly and the loop judders.
 - `assets/img/screens/` — screenshots: `NN-name.jpg` (1920×1080, press downloads),
   `NN-name.webp` (same size, lightbox) and `NN-name-thumb.webp` (800×450).
-- `assets/fonts/` — Oswald and Inter, latin subset, self-hosted (SIL Open Font License).
+  Videos start only after the page has loaded, and stay on their posters with reduced motion,
+  data-saver or a 2G/3G connection, or after the visitor presses the pause button in the hero
+  (remembered in `localStorage`).
+- `assets/fonts/` — Oswald and Inter, latin + cyrillic subsets, self-hosted (SIL Open Font License).
 - `presskit/hope-survival-screenshots.zip`, `presskit/hope-survival-logo.png` — press downloads.
 - `.nojekyll` — tells Pages to serve files as-is.
 
@@ -46,6 +52,6 @@ DNS at the registrar:
 - `www`: `CNAME` → `vargdevelopment.github.io`
 
 After DNS resolves, enable **Enforce HTTPS**, then replace
-`https://vargdevelopment.github.io/HOPESurvivalWebsite/` with the domain in: `index.html`
-(canonical, og/twitter tags, JSON-LD), `presskit/index.html` (canonical, og tags), `sitemap.xml`,
-`robots.txt`. `robots.txt` only takes effect at a domain root, i.e. after the domain is attached.
+`https://vargdevelopment.github.io/HOPESurvivalWebsite/` with the domain in every page (canonical,
+hreflang, og/twitter tags, JSON-LD), `sitemap.xml` and `robots.txt`, and drop the `repo` prefix
+check in `404.html`. `robots.txt` only takes effect at a domain root, i.e. after the domain is attached.

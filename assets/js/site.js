@@ -32,6 +32,7 @@ document.querySelectorAll("[data-trailer]").forEach((box) => {
     frame.allowFullscreen = true;
     box.replaceChildren(frame);
     box.classList.add("is-playing");
+    frame.focus();
   }, { once: true });
 });
 
@@ -64,15 +65,6 @@ if (lightbox) {
   });
 }
 
-const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-// Respect reduced motion: keep the hero on its poster frame.
-const heroVideo = document.querySelector(".hero video");
-if (heroVideo && reducedMotion) {
-  heroVideo.removeAttribute("autoplay");
-  heroVideo.pause();
-}
-
 // Header gets a background and the Steam/Discord buttons once the hero scrolls away.
 const header = document.querySelector(".site-header.is-sticky");
 const hero = document.querySelector(".hero");
@@ -82,16 +74,63 @@ if (header && hero) {
   }, { rootMargin: "-72px 0px 0px 0px" }).observe(hero);
 }
 
-// Feature loops play only while on screen, and never with reduced motion.
-const loops = document.querySelectorAll("video[data-loop]");
-if (!reducedMotion) {
-  const loopObserver = new IntersectionObserver((entries) => {
-    entries.forEach(({ target, isIntersecting }) => {
-      if (isIntersecting) target.play().catch(() => {});
-      else target.pause();
-    });
-  }, { threshold: 0.25 });
-  loops.forEach((v) => loopObserver.observe(v));
+// Motion: the hero loop and the feature loops.
+// They stay on their poster frames with reduced motion, on data-saver or slow connections, or after
+// the visitor pauses them; the pause is remembered for this browser.
+const MOTION_KEY = "hope-motion-paused";
+const readPaused = () => { try { return localStorage.getItem(MOTION_KEY) === "1"; } catch { return false; } };
+const writePaused = (v) => { try { localStorage.setItem(MOTION_KEY, v ? "1" : "0"); } catch { /* storage blocked */ } };
+
+const connection = navigator.connection || {};
+const lightMode = connection.saveData === true || /(^|-)2g$|^3g$/.test(connection.effectiveType || "");
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+let motionPaused = reducedMotion || lightMode || readPaused();
+
+const heroVideo = document.querySelector(".hero video");
+const loops = [...document.querySelectorAll("video[data-loop]")];
+const visibleLoops = new Set();
+const toggle = document.querySelector("[data-motion-toggle]");
+
+let pageLoaded = false;
+
+const playSafe = (v) => v.play().catch(() => {});
+
+const applyMotion = () => {
+  if (heroVideo) (motionPaused || !pageLoaded) ? heroVideo.pause() : playSafe(heroVideo);
+  loops.forEach((v) => (!motionPaused && visibleLoops.has(v) ? playSafe(v) : v.pause()));
+  if (toggle) {
+    toggle.setAttribute("aria-pressed", String(motionPaused));
+    toggle.setAttribute("aria-label", motionPaused ? toggle.dataset.labelPlay : toggle.dataset.labelPause);
+    toggle.classList.toggle("is-paused", motionPaused);
+  }
+};
+
+const loopObserver = new IntersectionObserver((entries) => {
+  entries.forEach(({ target, isIntersecting }) => {
+    if (isIntersecting) visibleLoops.add(target);
+    else visibleLoops.delete(target);
+  });
+  applyMotion();
+}, { threshold: 0.25 });
+loops.forEach((v) => loopObserver.observe(v));
+
+if (toggle) {
+  toggle.addEventListener("click", () => {
+    motionPaused = !motionPaused;
+    writePaused(motionPaused);
+    applyMotion();
+  });
 }
+
+// The hero video is ~13 MB: start fetching it only after the rest of the page has loaded.
+// Browsers hold back playback in background tabs; pick it up again when the tab comes back.
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") applyMotion();
+});
+
+const onLoaded = () => { pageLoaded = true; applyMotion(); };
+if (document.readyState === "complete") onLoaded();
+else window.addEventListener("load", onLoaded, { once: true });
 
 document.querySelectorAll("[data-year]").forEach((el) => { el.textContent = new Date().getFullYear(); });

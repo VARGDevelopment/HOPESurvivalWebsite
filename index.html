@@ -10,10 +10,15 @@
   <!-- Absolute URLs (canonical, social cards, JSON-LD, sitemap.xml, robots.txt) point at the
        GitHub Pages address. Switch them to the custom domain once it is attached. -->
   <link rel="canonical" href="https://vargdevelopment.github.io/HOPESurvivalWebsite/">
+  <link rel="alternate" hreflang="en" href="https://vargdevelopment.github.io/HOPESurvivalWebsite/">
+  <link rel="alternate" hreflang="ru" href="https://vargdevelopment.github.io/HOPESurvivalWebsite/ru/">
+  <link rel="alternate" hreflang="x-default" href="https://vargdevelopment.github.io/HOPESurvivalWebsite/">
   <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="ru_RU">
   <meta property="og:site_name" content="HOPE: Survival">
   <meta property="og:title" content="HOPE: Survival — Co-op Zombie Survival">
-  <meta property="og:description" content="Top-down co-op zombie survival for 1–8 players. The infected follow the noise you make — and every night they come for your base.">
+  <meta property="og:description" content="Top-down co-op zombie survival for 1–8 players. The infected follow the noise you make — and when night falls, the horde comes for your base.">
   <meta property="og:url" content="https://vargdevelopment.github.io/HOPESurvivalWebsite/">
   <meta property="og:image" content="https://vargdevelopment.github.io/HOPESurvivalWebsite/assets/img/og.jpg">
   <meta property="og:image:width" content="1200">
@@ -46,6 +51,7 @@
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header is-sticky">
     <div class="wrap">
       <a class="studio" href="./">Thirst Games Studio</a>
@@ -55,6 +61,7 @@
         <a href="#screenshots">Screenshots</a>
         <a href="#faq">FAQ</a>
         <a class="nav-keep" href="presskit/">Press kit</a>
+        <a class="nav-keep" href="ru/" hreflang="ru" lang="ru" aria-label="Русская версия">RU</a>
       </nav>
       <div class="header-cta">
         <a class="btn btn-primary btn-small" data-link="steam" href="#" target="_blank" rel="noopener">Wishlist</a>
@@ -63,9 +70,9 @@
     </div>
   </header>
 
-  <main>
+  <main id="main">
     <section class="hero">
-      <video autoplay muted loop playsinline preload="auto" poster="assets/video/hero.webp" aria-hidden="true">
+      <video muted loop playsinline preload="none" poster="assets/video/hero.webp" aria-hidden="true">
         <source src="assets/video/hero-mobile-av1.mp4" type='video/mp4; codecs="av01.0.05M.08"' media="(max-width: 760px)">
         <source src="assets/video/hero-mobile.mp4" type="video/mp4" media="(max-width: 760px)">
         <source src="assets/video/hero-av1.mp4" type='video/mp4; codecs="av01.0.08M.08"'>
@@ -81,6 +88,10 @@
           <a class="btn btn-ghost" href="#trailer">Watch the trailer</a>
         </div>
       </div>
+      <button class="motion-toggle" type="button" data-motion-toggle aria-pressed="false" aria-label="Pause background videos" data-label-pause="Pause background videos" data-label-play="Play background videos">
+        <svg class="icon-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 2h3.5v12H3zM9.5 2H13v12H9.5z"/></svg>
+        <svg class="icon-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2l10 6-10 6z"/></svg>
+      </button>
     </section>
 
     <section class="section" id="trailer">
@@ -122,8 +133,8 @@
               </video>
             </div>
             <div>
-              <h3>Every night they come</h3>
-              <p>When the sun goes down, the hordes march on your base. They grow stronger every night and scale with the size of your squad. Hold the line until morning.</p>
+              <h3>The horde comes at night</h3>
+              <p>Not every night — but when the horde marches on your base, it hits harder than the last one and scales with the size of your squad. Hold the line until morning.</p>
             </div>
           </article>
 
@@ -135,7 +146,7 @@
             </div>
             <div>
               <h3>Build the last warm light</h3>
-              <p>Turn a patch of ruins into a home: crafting stations, a furnace, extractors, garden beds, gates and traps. Upgrade it night after night — it is the only safe place you have.</p>
+              <p>Turn a patch of ruins into a home: crafting stations, a furnace, extractors, garden beds, gates and traps. Keep upgrading it — it is the only safe place you have.</p>
             </div>
           </article>
 
