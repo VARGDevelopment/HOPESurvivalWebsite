@@ -1,7 +1,7 @@
 // All outbound links live here. An empty value renders the control as "coming soon".
 const LINKS = {
   steam: "",
-  discord: "",
+  discord: "https://discord.gg/fuRWEf5U7d",
   trailer: "https://www.youtube.com/watch?v=NnqW2iyr3cw",
   pressEmail: "",
 };
