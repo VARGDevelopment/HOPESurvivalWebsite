@@ -8,7 +8,7 @@ Static site served by GitHub Pages from the `main` branch root. No build step.
   downloads with the English pages. A text change goes into both languages.
 - `presskit/gifs/` — seamless 640×360 GIFs for social posts (each under 10 MB) with `-thumb.webp` previews.
 - `404.html` — self-contained "not found" page (no relative assets on purpose).
-- `assets/js/site.js` — **all outbound links** (`LINKS`: Steam, Discord, trailer, press email).
+- `assets/js/site.js` — **all outbound links** (`LINKS`: Steam, Discord, trailer, press email, studio site).
   An empty value renders the button as "coming soon" (and hides it in the sticky header);
   fill it in and the button goes live everywhere.
 - `assets/video/` — background loop in four variants, picked by the browser in this order:

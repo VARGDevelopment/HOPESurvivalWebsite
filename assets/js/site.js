@@ -4,7 +4,11 @@ const LINKS = {
   discord: "https://discord.gg/fuRWEf5U7d",
   trailer: "https://www.youtube.com/watch?v=NnqW2iyr3cw",
   pressEmail: "",
+  studio: "https://vargdevelopment.github.io/ThirstGamesStudioWebsite/",
 };
+
+// The studio site has a Russian version; Russian pages link to it.
+if (document.documentElement.lang === "ru") LINKS.studio += "ru/";
 
 const TRAILER_ID = "NnqW2iyr3cw";
 

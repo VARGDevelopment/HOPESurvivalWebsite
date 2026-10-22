@@ -590,6 +590,8 @@ section[id] { scroll-margin-top: 72px; }
 .site-footer nav a { color: var(--fg); text-decoration: none; }
 .site-footer nav a:hover { color: var(--gold-bright); }
 .site-footer a.is-pending { color: var(--muted); }
+.site-footer .footer-studio { color: var(--fg); text-decoration: none; }
+.site-footer .footer-studio:hover { color: var(--gold-bright); }
 .site-footer .legal { flex-basis: 100%; margin: 0; font-size: 0.78rem; }
 
 /* Press kit */
