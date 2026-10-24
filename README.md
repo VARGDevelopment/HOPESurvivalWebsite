@@ -55,13 +55,13 @@ then open http://localhost:8765/.
 
 ## Custom domain
 
-Set in **Settings → Pages → Custom domain**; GitHub then commits a `CNAME` file here.
-DNS at the registrar:
+The site is served at **https://hopesurvival.com/** (`CNAME` file, set in **Settings → Pages →
+Custom domain**). DNS at GoDaddy:
 
 - apex: `A` records `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+  (GoDaddy's "Parked" A record and domain forwarding must stay off)
 - `www`: `CNAME` → `vargdevelopment.github.io`
 
-After DNS resolves, enable **Enforce HTTPS**, then replace
-`https://vargdevelopment.github.io/HOPESurvivalWebsite/` with the domain in every page (canonical,
-hreflang, og/twitter tags, JSON-LD), `sitemap.xml` and `robots.txt`, and drop the `repo` prefix
-check in `404.html`. `robots.txt` only takes effect at a domain root, i.e. after the domain is attached.
+Absolute URLs in every page (canonical, hreflang, og/twitter tags, JSON-LD), `sitemap.xml` and
+`robots.txt` point at the domain. The old `vargdevelopment.github.io/HOPESurvivalWebsite/` address
+redirects to it.
