@@ -17,13 +17,16 @@ Static site served by GitHub Pages from the `main` branch root. No build step.
   Each loop has a `.webp` poster (its first frame).
   The hero is the trailer at exactly half speed (60 fps source → 30 fps, every frame kept): a
   non-integer slow-down drops frames unevenly and the loop judders.
-- `assets/img/screens/` — screenshots: `NN-name.jpg` (1920×1080, press downloads),
-  `NN-name.webp` (same size, lightbox) and `NN-name-thumb.webp` (800×450).
+- `assets/img/screens/` — in-game screenshots (sources: `D:\Projects\TOS\Media\Screenshots\Steam_NN.png`,
+  3840×2160): `NN-name.jpg` (1920×1080, press downloads), `NN-name.webp` (same size, lightbox) and
+  `NN-name-thumb.webp` (800×450). `assets/img/og-hope.jpg` is the 1200×630 social card (shot 04 with
+  the logo on a dark vignette).
   Videos start only after the page has loaded, and stay on their posters with reduced motion,
   data-saver or a 2G/3G connection, or after the visitor presses the pause button in the hero
   (remembered in `localStorage`).
 - `assets/fonts/` — Oswald and Inter, latin + cyrillic subsets, self-hosted (SIL Open Font License).
-- `presskit/hope-survival-screenshots.zip`, `presskit/hope-survival-logo.png` — press downloads.
+- `presskit/hope-survival-screenshots.zip` (the ten screenshots as 4K JPG),
+  `presskit/hope-survival-logo.png` — press downloads.
 - `.nojekyll` — tells Pages to serve files as-is.
 
 ## Cache busting
@@ -38,9 +41,10 @@ V=$(date +%Y%m%d%H%M); sed -i -E "s#(style\.css|site\.js)\?v=[0-9]+#\1?v=$V#" in
 
 ## Placeholder content
 
-Screenshots, the logo and all video loops are cut from the official trailer
-(`HopeSurvivalTrailer.mp4`). Replace them with real captures when they exist; keep the names and
-rebuild the zip.
+The logo, all video loops and the press-kit GIFs are cut from the official trailer
+(`HopeSurvivalTrailer.mp4`); the screenshots are real captures. To swap screenshots: regenerate the
+three sizes from the 4K sources, update the galleries (main pages and press kits, both languages) and
+rebuild the zip from 4K JPGs.
 
 The loops are seamless: each one ends by cross-fading into its own first frame. With ffmpeg, for a
 clip of length `L` and fade `F`: `xfade` the clip with itself at `offset=L-F`, then `trim=start=F:end=L`.
